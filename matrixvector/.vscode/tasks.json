@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "build C++ with OpenMP",
+			"type": "shell",
+			"command": "g++",
+			"args": [
+				"-fdiagnostics-color=always",
+				"-g",
+				"${file}",
+				"-o",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"-fopenmp"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "compile serial",
+			"type": "shell",
+			"command": "g++",
+			"args": [
+				"serial.cpp",
+				"-o",
+				"serial.exe",
+				"-fopenmp"
+			]
+		}
+	]
+}
