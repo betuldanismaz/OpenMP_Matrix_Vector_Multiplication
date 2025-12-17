@@ -17,15 +17,17 @@ This project implements and compares different OpenMP scheduling strategies (sta
 ## Project Structure
 
 ```
-matrixvector/
-├── serial.cpp          # Serial (non-parallel) implementation
-├── static.cpp          # OpenMP static scheduling
-├── dynamic.cpp         # OpenMP dynamic scheduling
-├── guided.cpp          # OpenMP guided scheduling
-├── speedup.py          # Speedup comparison visualization
-├── executiontime.py    # Execution time comparison visualization
-└── .vscode/
-    └── tasks.json      # VS Code build configuration
+OpenMP_Matrix_Vector_Multiplication/
+├── matrixvector/
+│   ├── serial.cpp          # Serial (non-parallel) implementation
+│   ├── static.cpp          # OpenMP static scheduling
+│   ├── dynamic.cpp         # OpenMP dynamic scheduling
+│   ├── guided.cpp          # OpenMP guided scheduling
+│   └── .vscode/
+│       └── tasks.json      # VS Code build configuration
+├── speedup.py              # Speedup comparison visualization
+├── executiontime.py        # Execution time comparison visualization
+└── README.md               # Project documentation
 ```
 
 ## Requirements
@@ -47,7 +49,7 @@ matrixvector/
 
 ```bash
 git clone https://github.com/betuldanismaz/OpenMP_Matrix_Vector_Multiplication.git
-cd OpenMP_Matrix_Vector_Multiplication/matrixvector
+cd OpenMP_Matrix_Vector_Multiplication
 ```
 
 ### 2. Install Python Dependencies
@@ -61,6 +63,7 @@ pip install matplotlib
 ### Windows (MinGW/MSYS2)
 
 ```bash
+cd matrixvector
 g++ serial.cpp -o serial.exe -fopenmp
 g++ static.cpp -o static.exe -fopenmp
 g++ dynamic.cpp -o dynamic.exe -fopenmp
@@ -70,6 +73,7 @@ g++ guided.cpp -o guided.exe -fopenmp
 ### Linux/macOS
 
 ```bash
+cd matrixvector
 g++ serial.cpp -o serial -fopenmp
 g++ static.cpp -o static -fopenmp
 g++ dynamic.cpp -o dynamic -fopenmp
@@ -79,6 +83,12 @@ g++ guided.cpp -o guided -fopenmp
 ## Usage
 
 ### Running the Programs
+
+Navigate to the `matrixvector` directory first:
+
+```bash
+cd matrixvector
+```
 
 **Serial version:**
 
@@ -192,9 +202,9 @@ Efficiency = Speedup / Number_of_Threads
 
 ## Building with VS Code
 
-This project includes VS Code task configuration:
+This project includes VS Code task configuration in the `matrixvector/.vscode/` folder:
 
-1. Open any `.cpp` file
+1. Open any `.cpp` file from the `matrixvector` directory
 2. Press `Ctrl+Shift+B` (Windows/Linux) or `Cmd+Shift+B` (macOS)
 3. Select "build C++ with OpenMP"
 
