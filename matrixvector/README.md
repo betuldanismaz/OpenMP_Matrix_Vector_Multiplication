@@ -31,11 +31,13 @@ matrixvector/
 ## Requirements
 
 ### C++ Compilation
+
 - **Compiler**: GCC/G++ with OpenMP support (version 4.2 or higher)
 - **Operating System**: Windows, Linux, or macOS
 - **OpenMP**: Version 2.0 or higher
 
 ### Python Visualization
+
 - **Python**: 3.6 or higher
 - **matplotlib**: For generating performance graphs
 
@@ -79,11 +81,13 @@ g++ guided.cpp -o guided -fopenmp
 ### Running the Programs
 
 **Serial version:**
+
 ```bash
 ./serial
 ```
 
 **Parallel versions** (you'll be prompted to enter thread count):
+
 ```bash
 ./static
 ./dynamic
@@ -117,16 +121,19 @@ python executiontime.py
 ## OpenMP Scheduling Strategies
 
 ### Static Scheduling
+
 - **Description**: Divides iterations into equal-sized chunks at compile time
 - **Best For**: Uniform workload distribution
 - **Syntax**: `#pragma omp parallel for schedule(static)`
 
 ### Dynamic Scheduling
+
 - **Description**: Assigns chunks to threads at runtime with specified chunk size (4)
 - **Best For**: Variable workload or load imbalancing
 - **Syntax**: `#pragma omp parallel for schedule(dynamic, 4)`
 
 ### Guided Scheduling
+
 - **Description**: Starts with large chunks and progressively decreases size
 - **Best For**: Load balancing with decreasing overhead
 - **Syntax**: `#pragma omp parallel for schedule(guided)`
@@ -134,6 +141,7 @@ python executiontime.py
 ## Performance Analysis
 
 ### Test Configuration
+
 - **Matrix Size**: 3000 × 3000
 - **Vector Size**: 3000 elements
 - **Thread Counts**: 1, 2, 4, 8, 16
@@ -142,11 +150,13 @@ python executiontime.py
 ### Key Metrics
 
 #### Speedup Formula
+
 ```
 Speedup = T_serial / T_parallel
 ```
 
 #### Efficiency Formula
+
 ```
 Efficiency = Speedup / Number_of_Threads
 ```
@@ -154,7 +164,7 @@ Efficiency = Speedup / Number_of_Threads
 ### Results Summary
 
 | Threads | Static Time (s) | Dynamic Time (s) | Guided Time (s) |
-|---------|-----------------|------------------|-----------------|
+| ------- | --------------- | ---------------- | --------------- |
 | 1       | 0.087           | 0.079            | 0.076           |
 | 2       | 0.043           | 0.068            | 0.044           |
 | 4       | 0.027           | 0.045            | 0.026           |
@@ -164,16 +174,19 @@ Efficiency = Speedup / Number_of_Threads
 ## Implementation Details
 
 ### Matrix Representation
+
 - **Storage**: Row-major order in 1D vector
 - **Access Pattern**: `A[i * N + j]` for element at row i, column j
 - **Initialization**: Random values between 0-9
 
 ### Parallelization Strategy
+
 - **Parallel Loop**: Outer loop (matrix rows) is parallelized
 - **Private Variables**: Each thread maintains independent row calculations
 - **Synchronization**: Implicit barrier at end of parallel region
 
 ### Timing Methodology
+
 - **Timer**: `omp_get_wtime()` for high-resolution timing
 - **Measurement**: Excludes initialization and only measures computation time
 
@@ -190,15 +203,18 @@ This project includes VS Code task configuration:
 ### Compilation Errors
 
 **Issue**: `undefined reference to 'omp_get_wtime'`
+
 - **Solution**: Add `-fopenmp` flag to compilation command
 
 **Issue**: Compiler not found
+
 - **Solution**: Install GCC/G++ with OpenMP support
 
 ### Runtime Issues
 
 **Issue**: Poor speedup with high thread count
-- **Possible Causes**: 
+
+- **Possible Causes**:
   - Thread overhead exceeds computation benefit
   - Insufficient CPU cores
   - Memory bandwidth limitations
@@ -208,6 +224,7 @@ This project includes VS Code task configuration:
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ### Areas for Enhancement
+
 - Additional scheduling strategies (auto, runtime)
 - Different matrix sizes and sparsity patterns
 - Cache optimization techniques
@@ -221,6 +238,7 @@ This project is available for educational and research purposes.
 ## Author
 
 **Betul Danismaz**
+
 - GitHub: [@betuldanismaz](https://github.com/betuldanismaz)
 
 ## Acknowledgments
@@ -231,8 +249,8 @@ This project is available for educational and research purposes.
 ## References
 
 1. OpenMP Application Program Interface, Version 5.0 - November 2018
-2. Chapman, B., Jost, G., & Van Der Pas, R. (2007). *Using OpenMP: Portable Shared Memory Parallel Programming*
-3. Mattson, T., Sanders, B., & Massingill, B. (2004). *Patterns for Parallel Programming*
+2. Chapman, B., Jost, G., & Van Der Pas, R. (2007). _Using OpenMP: Portable Shared Memory Parallel Programming_
+3. Mattson, T., Sanders, B., & Massingill, B. (2004). _Patterns for Parallel Programming_
 
 ---
 
